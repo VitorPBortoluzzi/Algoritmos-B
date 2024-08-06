@@ -18,18 +18,22 @@ int main() {
 
     // Popula o vetor com números aleatórios entre 0 e 99
     for (int i = 0; i < tamanho; ++i) {
-        vetor[i] = rand() % 10;  // Números aleatórios entre 0 e 99
+        vetor[i] = rand() % 100;  // Números aleatórios entre 0 e 99
     }
+
     int numero;
     cout << "Insira o numero que deseja verificar quantas vezes aparece: ";
     cin >> numero;
 
     int contador = 0;
     for (int i = 0; i< tamanho; i++){
-        if(vetor[i] == numero){
+        if(numero == vetor[i]){
             contador++;
-        }
+        } 
     }
+
+    cout << numero << " Aparece no vetor " << contador << " vezes.";
+    
 
     // Exibe os números no vetor
     cout << "Números no vetor: ";
@@ -38,7 +42,7 @@ int main() {
     }
     cout << endl;
 
-    cout << "O numero: " << numero << " aparece " << contador << " vezes";
+    // cout << "O numero: " << numero << " aparece " << contador << " vezes";
 
     return 0;
 }

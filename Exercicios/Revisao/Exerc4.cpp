@@ -20,7 +20,7 @@ int main() {
 
     // Popula o vetor com números aleatórios entre 0 e 99
     for (int i = 0; i < tamanho; ++i) {
-        vetor[i] = rand() % 10;  // Números aleatórios entre 0 e 99
+        vetor[i] = rand() % 100;  // Números aleatórios entre 0 e 99
     }
 
     // Exibe os números no vetor

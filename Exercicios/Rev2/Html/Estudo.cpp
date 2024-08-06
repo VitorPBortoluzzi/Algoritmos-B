@@ -4,6 +4,12 @@
 
 using namespace std;
 
+void formatDouble(double value, string &formatted) {    //Define uma função que não retorna nenhum valor (void). Ela recebe dois parâmetros:
+    char buffer[50];                                    // Declara um array de caracteres com tamanho 50. Este buffer será usado para armazenar o valor formatado como uma string.
+    snprintf(buffer, sizeof(buffer), "%.2f", value);    //  é uma função da biblioteca padrão C (<cstdio>), que escreve uma string formatada no buffer.
+    formatted = buffer;                                 // Atribui o conteúdo do buffer à variável formatted, que agora contém a string formatada com duas casas decimais.
+}
+
 int main() {
     FILE *infile = fopen ("funcionarios.txt","r");
     FILE *outfile = fopen ("resultados.html","w");
@@ -46,5 +52,43 @@ int main() {
         salario_atual_str = salario_atual_str.substr(salario_atual_str.find(':') + 1);
         salario_atual = stod(salario_atual_str); // String to Double (stod) - Converte a string em double --> Converte o valor da string salario_atual_str para um tipo double e armazena esse valor na variável salario_atual.
 
+        //Lê e ignora o total de vendas: --Come linha;
+        total_de_vendar_str = linha_str; 
+        
+        //Calcula o reajuste com base nos critérios fornecidos:
+        if (salario_atual < 10000) {
+            reajuste = salario_atual * 0.55;
+            porcentagem_reajuste = 55.0;
+        } else if (salario_atual >= 10000 && salario_atual <= 25000) {
+            reajuste = salario_atual * 0.30;
+            porcentagem_reajuste = 30.0;
+        } else {
+            reajuste = salario_atual * 0.20;
+            porcentagem_reajuste = 20.0;
+        }
+
+        // Calcula o salário reajustado
+        salario_reajustado = salario_atual + reajuste;
+
+        // Formata os resultados para exibição
+        string salario_atual_formatted, reajuste_formatted, salario_reajustado_formatted;
+        formatDouble(salario_atual, salario_atual_formatted);
+        formatDouble(reajuste, reajuste_formatted);
+        formatDouble(salario_reajustado, salario_reajustado_formatted);
+
+        // Escreve os resultados no arquivo de saída em HTML
+        fprintf(outfile, "<tr><td><b>%s</b></td><td><b>R$ %s</b></td><td><b>R$ %s (%.0f%%)</b></td><td><b>R$ %s</b></td></tr>\n",
+        cod_funcionario.c_str(), salario_atual_formatted.c_str(),
+        reajuste_formatted.c_str(), porcentagem_reajuste,
+        salario_reajustado_formatted.c_str());
     }
+    // Fecha tags HTML
+    fprintf(outfile, "</table>\n</body>\n</html>\n");
+
+    fclose(infile);
+    fclose(outfile);
+
+    cout << "Processamento concluído. Resultados salvos em 'resultados.html'." << endl;
+
+    return 0;
 }
