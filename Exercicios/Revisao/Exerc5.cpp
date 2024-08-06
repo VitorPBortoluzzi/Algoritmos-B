@@ -7,6 +7,7 @@
 using namespace std;
 
 int main() {
+    system("cls");
     // Inicializa o gerador de números aleatórios
     srand(time(NULL));
 
