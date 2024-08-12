@@ -22,7 +22,7 @@ int main() {
     srand(time(NULL));
     for (int i = 0; i < TAMANHO; i++) {
         for (int j = 0; j < TAMANHO; j++) {
-            matriz[i][j] = rand() % 10;
+            matriz[i][j] = rand() % 100;
             cout << matriz[i][j] << " ";
         }
         cout << endl;
@@ -55,11 +55,29 @@ int main() {
     }
     cout << "Soma dos elementos da diagonal principal da matriz gerada: " << somaDiagonal << endl;
 
+    int somaDiagonalSecundaria = 0;
+    for (int i = 0; i < TAMANHO; i++) {
+        somaDiagonalSecundaria += matriz[i][TAMANHO - 1 - i];
+    }
+
+    cout << "Soma dos elementos da diagonal secundaria da matriz gerada: " << somaDiagonalSecundaria << endl;
+
     int somaPrimeiraLinha = 0;
     for (int i = 0; i < TAMANHO; i++) {
         somaPrimeiraLinha += matriz[0][i];
     }
     cout << "Soma dos elementos da primeira linha da matriz gerada: " << somaPrimeiraLinha << endl;
+
+    int somaLinhaMeio = 0;
+    if (TAMANHO % 2 == 0) {
+        cout << "A matriz nao possui linha do meio" << endl;
+    } else{
+        for (int i = 0; i < TAMANHO; i++) {
+            somaLinhaMeio += matriz[TAMANHO / 2][i];
+        }
+    }
+    cout << "Linha do meio: " << TAMANHO / 2 + 1 << endl;
+    cout << "Soma dos elementos da linha do meio da matriz gerada: " << somaLinhaMeio << endl;
 
     int somaUltimaColuna = 0;
     for (int i = 0; i < TAMANHO; i++) {
