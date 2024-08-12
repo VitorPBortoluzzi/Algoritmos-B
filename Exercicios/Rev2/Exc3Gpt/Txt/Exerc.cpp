@@ -1,3 +1,11 @@
+ /**
+ * 3 - Escreva um algoritmo para calcular o reajuste salarial de uma empresa que possui 1000 
+ * funcionários, de acordo com os seguintes critérios:
+ *	• os funcionários com salário inferior a 10.000 devem receber 55% de reajuste
+ *	• os funcionários com salário entre 10.000 e 25.000 devem receber 30% de reajuste.
+ *	• os funcionários com salário acima de 25.000 devem receber 20% de reajuste.
+ */ 
+
 #include <iostream>
 #include <string>
 #include <cstdio>  // Para snprintf

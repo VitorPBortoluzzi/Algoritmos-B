@@ -30,10 +30,3 @@
 *.exe
 *.out
 *.app
-
-!C++\Codigos Desafios\Matrizes\roda1.exe
-!C++\Codigos Desafios\Matrizes\roda2.exe
-!C++\Codigos Desafios\Matrizes\roda3.exe
-!C++\Codigos Desafios\Matrizes\roda4.exe
-!C++\Codigos Desafios\Matrizes\roda5.exe
-!C++\Codigos Desafios\Matrizes\roda6.exe
