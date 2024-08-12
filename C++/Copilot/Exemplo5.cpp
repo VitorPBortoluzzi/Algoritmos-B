@@ -1,3 +1,7 @@
+/*
+Fazer um programa em C ou C++ que popule e mostre um vetor com números inteiros e aleatórios. A quantidade de números deve ser igual ao tamanho do vetor inteiro definido. Em seguida, o programa deve mostrar todos os números que aparecem mais de 2 vezes no vetor.
+*/
+
 #include <iostream>
 #include <vector>
 #include <cstdlib>  // Para rand() e srand()
@@ -22,45 +26,40 @@ int main() {
     }
 
     // Exibe os números no vetor
-    cout << "Números no vetor: ";
+    cout << "Numeros no vetor: ";
     for (int i = 0; i < tamanho; ++i) {
         cout << vetor[i] << " ";
     }
     cout << endl;
 
-    int contaOcorrencia, numeroAnalisado;
-    //vector<int> vetorRepetidos(tamanho);
-    //int iRepetidos;
-    for (int i = 0; i < tamanho; i++)
-    {
+    int contaOcorrencia;
+    int numeroAnalisado;
+    vector<int> vetorRepetidos(tamanho);
+    int iRepetidos = 0;
+    for (int i = 0; i < tamanho; i++) {
         if (vetor[i] != -27) {
             numeroAnalisado = vetor[i];
             contaOcorrencia = 0;
-            for (int j = i; j < tamanho; j++)
-            {
-                if(numeroAnalisado == vetor[j]){
+            for (int j = 0; j < tamanho; j++) {
+                if (numeroAnalisado == vetor[j]) {
                     contaOcorrencia++;
-                    if(contaOcorrencia > 1){
+                    if (contaOcorrencia > 1) {
                         vetor[j] = -27;
                     }
                 }
             }
             if (contaOcorrencia > 1){
-                cout << vetor[i] << " Aparece "<< contaOcorrencia << " Vezes\n";
+                vetorRepetidos[iRepetidos] = numeroAnalisado;
+                iRepetidos++;
             }
         }
-        // if (contaOcorrencia > 1){
-        //     vetorRepetidos[++iRepetidos] = numeroAnalisado;
-        //     iRepetidos++;
-        // }
-        
     }
-    // cout << "Numeros Repetidos ....";
-    // for (int i = 0; i < iRepetidos; i++)
-    // {
-    //     cout << vetorRepetidos[i];
-    // }
-    // cout << endl;
 
+    //exibir os números que repetem mais de uma vez
+    cout << "Numeros repetidos: ";
+    for (int i = 0; i < iRepetidos; i++) {
+        cout << vetorRepetidos[i] << " ";
+    }
+    cout << endl;
     return 0;
 }
