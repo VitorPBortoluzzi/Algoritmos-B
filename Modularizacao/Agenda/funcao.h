@@ -77,7 +77,7 @@ bool remover(Contato vetor[],int *qtd){
                     vetor[i].nome = "";
                     vetor[i].email = "";
                     vetor[i].telefone = "";
-                    *qtd--;
+                    (*qtd)--;
                     return true;
                 }
             }
@@ -94,10 +94,12 @@ bool atualizar(Contato vetor[],int qtd){
     getline(cin, nomePesquisa);
     nomePesquisa = paraMaisculo(nomePesquisa);
     int confirma;
+    bool encontrado = false;
 
     for(int i=0; i< qtd; i++){
         if(vetor[i].nome != ""){
             if (vetor[i].nome == nomePesquisa){
+                encontrado = true;
                 cout << "Nome: " << vetor[i].nome << endl;
                 cout << "Email: " << vetor[i].email << endl;
                 cout << "Telefone: " << vetor[i].telefone << endl;
@@ -126,7 +128,8 @@ bool atualizar(Contato vetor[],int qtd){
             }
         }
     }
-    return true;
+    if (!encontrado) return false;
+    else return true;
 }
 
 bool listar(Contato vetor[], int qtd){
