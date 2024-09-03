@@ -54,12 +54,32 @@ int main(){
                     cout << "Contato não encontrado" << endl;
                 }
                 break;
+            // case 3:
+            //     cout << "Atualizar" << endl;
+            //     if(atualizar(vetor, qtd_contatos)){
+            //         cout << "Contato atualizado" << endl;
+            //     } else {
+            //         cout << "Contato não encontrado" << endl;
+            //     }
+            //     break;
             case 3:
                 cout << "Atualizar" << endl;
-                if(atualizar(vetor, qtd_contatos)){
-                    cout << "Contato atualizado" << endl;
-                } else {
-                    cout << "Contato não encontrado" << endl;
+                switch(atualizar(vetor, qtd_contatos)) {
+                    case ATUALIZAR_SUCESSO:
+                        cout << "Contato atualizado com sucesso" << endl;
+                        break;
+                    case ATUALIZAR_FALHA_AGENDA_VAZIA:
+                        cout << "Agenda vazia" << endl;
+                        break;
+                    case ATUALIZAR_FALHA_CONTATO_NAO_ENCONTRADO:
+                        cout << "Contato não encontrado" << endl;
+                        break;
+                    case ATUALIZAR_CANCELADO:
+                        cout << "Atualização cancelada" << endl;
+                        break;
+                    default:
+                        cout << "Erro desconhecido" << endl;
+                        break;
                 }
                 break;
             case 4:
