@@ -1,0 +1,2 @@
+#ID;valorGlicemia;Data/Hora
+2;200;21:18 - 16/09/2024
