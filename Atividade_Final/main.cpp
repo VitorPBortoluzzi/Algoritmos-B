@@ -17,18 +17,16 @@
 
 using namespace std;
 
-#define TAM 100
-
 #include "funcoes.h"
 
 
 int main(){
     int opcao;
     do{
-        cout << "1 - Realizar inscrição" << endl;
+        cout << "1 - Realizar inscricao" << endl;
         cout << "2 - Listar inscritos" << endl;
-        cout << "3 - Registrar frequência" << endl;
-        cout << "4 - Gerar relatório de presença" << endl;
+        cout << "3 - Registrar frequencia" << endl;
+        cout << "4 - Gerar relatorio de presenca" << endl;
         cout << "5 - Sair" << endl;
         cout << "Opção: ";
         cin >> opcao;
@@ -50,9 +48,8 @@ int main(){
                 cout << "Saindo..." << endl;
                 break;
             default:
-                cout << "Opção inválida" << endl;
+                cout << "Opcao invalida" << endl;
         }
     }while(opcao != 5);
-
     return 0;
 }	
