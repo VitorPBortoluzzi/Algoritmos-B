@@ -43,7 +43,7 @@ void realizarInscricao(){
     cout << "Matrícula: ";
     getline(cin, inscricao.matricula);
 
-    ofstream arquivo("inscricoes.csv", ios::app);
+    ofstream arquivo("Banco/inscricoes.csv", ios::app);
     if(arquivo.is_open()){
         arquivo << inscricao.nome << ";" << inscricao.email << ";" << inscricao.matricula << endl;
         arquivo.close();
