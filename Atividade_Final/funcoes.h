@@ -33,40 +33,6 @@ typedef struct {
     string dataHora;
 } Frequencia;
 
-void realizarInscricao(){
-    Inscricao inscricao;
-    cout << "Nome completo: ";
-    cin.ignore();
-    getline(cin, inscricao.nome);
-    cout << "Email: ";
-    getline(cin, inscricao.email);
-    cout << "Matrícula: ";
-    getline(cin, inscricao.matricula);
-
-    ofstream arquivo("Banco/inscricoes.csv", ios::app);
-    if(arquivo.is_open()){
-        arquivo << inscricao.nome << ";" << inscricao.email << ";" << inscricao.matricula << endl;
-        arquivo.close();
-    }else{
-        cout << "Erro ao abrir o arquivo" << endl;
-    }   
-}
-
-void listarInscritos(){
-    ifstream arquivo("Banco/inscricoes.csv");
-    string linha;
-
-    cout << "Listagem de inscritos" << endl;
-    if(arquivo.is_open()){
-        while(getline(arquivo, linha)){
-            cout << linha << endl;
-        }
-        arquivo.close();
-    }else{
-        cout << "Erro ao abrir o arquivo" << endl;
-    }
-}
-
 bool verificarMatricula(string& matricula){
     ifstream arquivoIns("Banco/inscricoes.csv", ios::in);
     string linha;
@@ -85,6 +51,62 @@ bool verificarMatricula(string& matricula){
     arquivoIns.close();
     cout << "Erro ao abrir o arquivo" << endl;
     return false;
+    }
+}
+
+int contarInscritos(){
+    ifstream arquivo("Banco/inscricoes.csv");
+    if (!arquivo.is_open()) {
+        cout << "Erro ao abrir o arquivo de inscrições.\n";
+        return -1; 
+    }
+
+    string linha;
+    int contador = 0;
+
+    while (getline(arquivo, linha)) {
+        contador++;
+    }
+    arquivo.close();
+    return contador;
+}
+
+void realizarInscricao(){
+    Inscricao inscricao;
+    cout << "Nome completo: ";
+    cin.ignore();
+    getline(cin, inscricao.nome);
+    cout << "Email: ";
+    getline(cin, inscricao.email);
+    int qtdInscritos = contarInscritos() + 1;
+    inscricao.matricula = to_string(qtdInscritos); 
+    cout << "Matrícula: " << inscricao.matricula << endl;
+    if(verificarMatricula(inscricao.matricula) == false){
+        ofstream arquivo("Banco/inscricoes.csv", ios::app);
+        if(arquivo.is_open()){
+            arquivo << inscricao.nome << ";" << inscricao.email << ";" << inscricao.matricula << endl;
+            arquivo.close();
+        }else{
+            cout << "Erro ao abrir o arquivo" << endl;
+        } 
+    } else {
+        cout << "Erro, Matrícula já cadastrada, encerrando" << endl;
+    }
+  
+}
+
+void listarInscritos(){
+    ifstream arquivo("Banco/inscricoes.csv");
+    string linha;
+
+    cout << "Listagem de inscritos" << endl;
+    if(arquivo.is_open()){
+        while(getline(arquivo, linha)){
+            cout << linha << endl;
+        }
+        arquivo.close();
+    }else{
+        cout << "Erro ao abrir o arquivo" << endl;
     }
 }
 
