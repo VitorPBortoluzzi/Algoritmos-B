@@ -1,18 +1,18 @@
-// Construir um sistema para realizar inscrições (nome completo, email e matrícula), salvando os dados no arquivo inscricoes.csv. O sistema deve possuir um Menu como:
+// Construir um sistema para realizar inscricoes (nome completo, email e matrícula), salvando os dados no arquivo inscricoes.csv. O sistema deve possuir um Menu como:
 
-// 1 - Realizar inscrição 
+// 1 - Realizar inscricão 
 
 // 2 - Listar inscritos 
 
 // 3 - Registrar frequência (via matrícula) 
 
-// 4 - Gerar relatório de presença 
+// 4 - Gerar relatório de presenca 
 
-// 5 - Sair Opção:
+// 5 - Sair Opcão:
 
 // No item 3, toda vez que uma matrícula é salva/persistida, os dados armazenados são: matricula;data;hora
 
-// A interface que captura a frequência permanece em repetição até que a matrícula seja -27.
+// A interface que captura a frequência permanece em repeticão até que a matrícula seja -27.
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
@@ -53,7 +53,7 @@ void realizarInscricao(){
 }
 
 void listarInscritos(){
-    ifstream arquivo("inscricoes.csv");
+    ifstream arquivo("Banco/inscricoes.csv");
     string linha;
 
     cout << "Listagem de inscritos" << endl;
@@ -68,7 +68,7 @@ void listarInscritos(){
 }
 
 bool verificarMatricula(string& matricula){
-    ifstream arquivoIns("inscricoes.csv", ios::in);
+    ifstream arquivoIns("Banco/inscricoes.csv", ios::in);
     string linha;
     string splits[3];
 
@@ -90,14 +90,14 @@ bool verificarMatricula(string& matricula){
 
 void registrarFrequencia(){
     string matricula;
-    ofstream arquivo("frequencia.csv", ios::app);
+    ofstream arquivo("Banco/frequencia.csv", ios::app);
 
     if(!arquivo.is_open()){
         cout << "Erro ao abrir o arquivo" << endl;
         return;
     }
 
-    cout << "Registrar presença (Digite -27 para sair)" << endl;
+    cout << "Registrar presenca (Digite -27 para sair)" << endl;
     while(true){
         cout << "Digite a matricula: ";
         cin >> matricula;
@@ -105,9 +105,9 @@ void registrarFrequencia(){
         if (verificarMatricula(matricula) == true){
             string dataHora = obterDataHoraAtual();
             arquivo << matricula << ";" << dataHora << endl;
-            cout << "Presença registrada" << endl;
+            cout << "Presenca registrada" << endl;
         } else {
-            cout << "Matrícula não encontrada. Inscrição necessária" << endl;
+            cout << "Matrícula não encontrada. Inscricão necessária" << endl;
         }
         cin.ignore();
     }
@@ -115,16 +115,22 @@ void registrarFrequencia(){
 }
 
 void gerarRelatorioPresenca(){
-    ifstream arquivo("frequencia.csv");
+    ifstream arquivo("Banco/frequencia.csv");
     string linha;
 
-    cout << "Relatório de presença" << endl;
-    if(arquivo.is_open()){
-        while(getline(arquivo, linha)){
-            cout << linha << endl;
+    ofstream Relatorio("Banco/relatorio.csv");
+    Relatorio.is_open();
+    cout << "Relatório de presenca" << endl;
+    if(Relatorio.is_open()){
+        if(arquivo.is_open()){
+            while(getline(arquivo, linha)){
+                Relatorio << linha << endl;
+
+            }
+            arquivo.close();
         }
-        arquivo.close();
     }else{
         cout << "Erro ao abrir o arquivo" << endl;
     }
+    Relatorio.close();
 }
